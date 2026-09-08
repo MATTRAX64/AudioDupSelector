@@ -2,103 +2,77 @@
 
 # 🎵 AudioDupSelector
 
-**A simple web interface for sorting audio duplicates detected by `dupsonic.exe`.**
+**Une interface simple pour trouver et trier les doublons audio avec `dupsonic.exe`.**
 
-[![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
-[![Flask](https://img.shields.io/badge/Flask-required-black?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
-[![Languages](https://img.shields.io/badge/Languages-6-green)](#-languages)
+🎧 Écoutez les fichiers · ✅ Choisissez celui à garder · 📁 L'autre est déplacé dans `trier/`
 
-Listen to duplicate files, choose which one to keep, and safely move the other one to `trier/`.
+**Aucun fichier n'est supprimé définitivement.**
 
-**Nothing is permanently deleted.**
-
-[⬇️ Downloads](https://github.com/MATTRAX64/AudioDupSelector/releases) ·
-[🐛 Issues](https://github.com/MATTRAX64/AudioDupSelector/issues)
+[⬇️ Download](https://github.com/MATTRAX64/AudioDupSelector/releases)
 
 </div>
 
 ---
 
-## ✨ Features
+## 📋 Informations
 
-- 🎵 Detect duplicates with `dupsonic.exe`
-- 🌐 Lightweight local web interface
-- ▶️ Listen to files before choosing
-- ↩️ Undo a choice
-- 📁 Unkept files are moved to `trier/`
-- 🛡️ No permanent deletion
-- 🌍 Available in **6 languages**
+* 🐍 **Python 3.9+**
+* 🧰 **Flask**
+* 🪟 **Windows**
+* 🔎 **dupsonic.exe** pour détecter les doublons
 
-## 🌍 Languages
+### Installation
 
-| Language | |
-|---|---|
-| 🇫🇷 Français | 🇬🇧 English |
-| 🇪🇸 Español | 🇩🇪 Deutsch |
-| 🇷🇺 Русский | 🇯🇵 日本語 |
+Lancez simplement :
 
-## 📋 Requirements
-
-- **Python**
-- **`dupsonic.exe`**
-- **Flask**
-
-Install Flask:
-
-```bash
-pip install flask
+```text
+install_library.cmd
 ```
 
-## 🚀 Usage
+Le script installe automatiquement les dépendances nécessaires.
 
-Run the application:
+Ensuite, lancez :
 
-```bash
-python AudioDupSelector.pyw
+```text
+AudioDupSelector.pyw
 ```
 
-A folder selection window will appear. Choose the folder containing your audio files.
+---
 
-### Options
+## ✨ Ce que vous pouvez faire
 
-```bash
-python AudioDupSelector.pyw --dossier "C:\path\to\audio"
-python AudioDupSelector.pyw --exe "C:\path\to\dupsonic.exe"
-python AudioDupSelector.pyw --port 8765
-python AudioDupSelector.pyw --no-browser
-```
+* 🔎 Trouver les fichiers audio en double
+* 🎧 Écouter les deux fichiers avant de choisir
+* ✅ Sélectionner le fichier à conserver
+* 📁 Déplacer automatiquement l'autre fichier dans `trier/`
+* ↩️ Annuler la dernière action
+* ⏭️ Passer un doublon sans rien modifier
 
-## 🔄 How it works
-
-1. `dupsonic.exe` scans the selected audio folder.
-2. Audio duplicates are detected.
-3. Duplicate pairs are displayed in the web interface.
-4. Listen to both files.
-5. Click **Keep this one**.
-6. The other file is moved to `trier/`.
-
-> [!NOTE]
-> Groups containing 3 or more duplicate files are not currently handled by the selection interface.
-
-## 🛡️ Safety
-
-AudioDupSelector does **not permanently delete files**.
-
-When you keep one file, the other is moved to:
+Les fichiers déplacés sont conservés dans :
 
 ```text
 trier/
 ```
 
-This makes it possible to recover a file if you make a mistake.
+Ainsi, en cas d'erreur, vous pouvez les récupérer.
 
-## 📥 Download
+---
 
-Get the latest version from the **[Releases](https://github.com/MATTRAX64/AudioDupSelector/releases)** page.
+## 🌍 Langues disponibles
 
-## 📄 License
+🇫🇷 Français · 🇬🇧 English · 🇪🇸 Español · 🇩🇪 Deutsch · 🇷🇺 Русский · 🇯🇵 日本語
 
-See the main repository for license information.
+---
+
+## 🚀 Utilisation
+
+1. Lancez `AudioDupSelector.pyw`
+2. Sélectionnez votre dossier audio
+3. Écoutez les deux fichiers
+4. Choisissez celui que vous voulez garder
+5. L'autre fichier est déplacé dans `trier/`
+
+**Rien n'est supprimé définitivement.**
 
 ---
 
