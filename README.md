@@ -2,82 +2,82 @@
 
 # 🎵 AudioDupSelector
 
-**Une interface simple pour trouver et trier les doublons audio avec `dupsonic.exe`.**
+**Simple audio duplicate selector powered by `dupsonic.exe`.**
 
-🎧 Écoutez les fichiers · ✅ Choisissez celui à garder · 📁 L'autre est déplacé dans `trier/`
+🎧 Listen · ✅ Keep · 📁 Move to `trier/`
 
-**Aucun fichier n'est supprimé définitivement.**
+<br>
 
-[⬇️ Download](https://github.com/MATTRAX64/AudioDupSelector/releases)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python\&logoColor=white)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-Required-000000?logo=flask\&logoColor=white)](https://flask.palletsprojects.com/)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?logo=github\&logoColor=white)](https://github.com/MATTRAX64/AudioDupSelector)
+
+[⬇️ **Download**](https://github.com/MATTRAX64/AudioDupSelector/releases) · [🐛 **Issues**](https://github.com/MATTRAX64/AudioDupSelector/issues)
 
 </div>
 
 ---
 
-## 📋 Informations
+## ✨ Features
 
-* 🐍 **Python 3.9+**
-* 🧰 **Flask**
-* 🪟 **Windows**
-* 🔎 **dupsonic.exe** pour détecter les doublons
+* 🎵 Find audio duplicates with `dupsonic.exe`
+* 🎧 Listen to both files before choosing
+* ✅ Select the file you want to keep
+* 📁 Move the other file to `trier/`
+* ↩️ Undo your last choice
+* ⏭️ Skip a duplicate
+* 🛡️ **Nothing is permanently deleted**
 
-### Installation
+> Files moved to `trier/` can be recovered if you make a mistake.
 
-Lancez simplement :
+---
 
-```text
+## 📦 Installation
+
+**Requirements:** Python 3.9+ · Windows · `dupsonic.exe`
+
+Run:
+
+```bash
 install_library.cmd
 ```
 
-Le script installe automatiquement les dépendances nécessaires.
+Then start:
 
-Ensuite, lancez :
-
-```text
+```bash
 AudioDupSelector.pyw
 ```
 
+Choose your audio folder and start sorting.
+
 ---
 
-## ✨ Ce que vous pouvez faire
+## 🌍 Languages
 
-* 🔎 Trouver les fichiers audio en double
-* 🎧 Écouter les deux fichiers avant de choisir
-* ✅ Sélectionner le fichier à conserver
-* 📁 Déplacer automatiquement l'autre fichier dans `trier/`
-* ↩️ Annuler la dernière action
-* ⏭️ Passer un doublon sans rien modifier
+🇫🇷 Français · 🇬🇧 English · 🇪🇸 Español
+🇩🇪 Deutsch · 🇷🇺 Русский · 🇯🇵 日本語
 
-Les fichiers déplacés sont conservés dans :
+---
+
+## 🔄 How it works
 
 ```text
-trier/
+dupsonic.exe
+     ↓
+Find duplicates
+     ↓
+🎧 Listen & choose
+     ↓
+┌───────────────┐
+│ Keep → stays  │
+│ Other → trier/│
+└───────────────┘
 ```
-
-Ainsi, en cas d'erreur, vous pouvez les récupérer.
-
----
-
-## 🌍 Langues disponibles
-
-🇫🇷 Français · 🇬🇧 English · 🇪🇸 Español · 🇩🇪 Deutsch · 🇷🇺 Русский · 🇯🇵 日本語
-
----
-
-## 🚀 Utilisation
-
-1. Lancez `AudioDupSelector.pyw`
-2. Sélectionnez votre dossier audio
-3. Écoutez les deux fichiers
-4. Choisissez celui que vous voulez garder
-5. L'autre fichier est déplacé dans `trier/`
-
-**Rien n'est supprimé définitivement.**
 
 ---
 
 <div align="center">
 
-Made with ❤️ for easier audio library cleanup.
+Made with the [dupsonic](https://github.com/zas/dupsonic) project.
 
 </div>
