@@ -39,7 +39,7 @@ Listen to duplicate files, choose which one to keep, and safely move the other o
 
 ## 📋 Requirements
 
-- **Python 3.9+**
+- **Python**
 - **`dupsonic.exe`**
 - **Flask**
 
