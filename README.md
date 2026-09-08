@@ -1,124 +1,109 @@
-# dupsonic
+<div align="center">
 
-<!-- badges -->
-[![Crates.io](https://img.shields.io/crates/v/dupsonic)](https://crates.io/crates/dupsonic)
-[![License: GPL-2.0-or-later](https://img.shields.io/crates/l/dupsonic)](LICENSE)
-[![CI](https://github.com/zas/dupsonic/actions/workflows/ci.yml/badge.svg)](https://github.com/zas/dupsonic/actions)
+# 🎵 AudioDupSelector
 
-Find duplicate audio files by how they **sound**, not by filename or tags.
+**A simple web interface for sorting audio duplicates detected by `dupsonic.exe`.**
 
-dupsonic uses acoustic fingerprinting to detect duplicates regardless of format, bitrate, or metadata — the same MP3 and FLAC of a track will be matched, even if their tags differ completely.
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-required-black?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![Languages](https://img.shields.io/badge/Languages-6-green)](#-languages)
 
-## Quick start
+Listen to duplicate files, choose which one to keep, and safely move the other one to `trier/`.
 
-```bash
-dupsonic scan ~/Music       # fingerprint your library (only once, ~6s for 2000 files)
-dupsonic find-dupes         # show duplicate groups
-```
+**Nothing is permanently deleted.**
 
-Or just:
+[⬇️ Downloads](https://github.com/MATTRAX64/AudioDupSelector/releases) ·
+[🐛 Issues](https://github.com/MATTRAX64/AudioDupSelector/issues)
 
-```bash
-dupsonic scan               # auto-detects your Music folder on first run
-dupsonic find-dupes
-```
+</div>
 
-Output:
+---
 
-```
-── Duplicate Group a6bacb6d (2 files, 97% similar) ──
-  ~/Music/Artist/Album/track.flac (3:18)
-  ~/Music/Downloads/track.mp3 (3:18)
+## ✨ Features
 
-── Duplicate Group 759f5320 (2 files, 97% similar) ──
-  ~/Music/Artist/Album/song.flac (2:52)
-  ~/Music/Old/song.ogg (2:52)
+- 🎵 Detect duplicates with `dupsonic.exe`
+- 🌐 Lightweight local web interface
+- ▶️ Listen to files before choosing
+- ↩️ Undo a choice
+- 📁 Unkept files are moved to `trier/`
+- 🛡️ No permanent deletion
+- 🌍 Available in **6 languages**
 
-Summary: 2 duplicate groups, 2 redundant files
-```
+## 🌍 Languages
 
-Files are sorted by quality (best first). Remove duplicates with:
+| Language | |
+|---|---|
+| 🇫🇷 Français | 🇬🇧 English |
+| 🇪🇸 Español | 🇩🇪 Deutsch |
+| 🇷🇺 Русский | 🇯🇵 日本語 |
 
-```bash
-dupsonic find-dupes --exec "mv {} /tmp/dupes/" --keep best          # preview
-dupsonic find-dupes --exec "mv {} /tmp/dupes/" --keep best --apply  # execute
-```
+## 📋 Requirements
 
-See [ADVANCED.md](ADVANCED.md) for the full command reference, `--keep` strategies, output formats, and configuration.
+- **Python 3.9+**
+- **`dupsonic.exe`**
+- **Flask**
 
-## Install
-
-**From crates.io** (requires Rust toolchain):
+Install Flask:
 
 ```bash
-cargo install dupsonic
+pip install flask
 ```
 
-**Pre-built binaries** from [GitHub Releases](https://github.com/zas/dupsonic/releases):
+## 🚀 Usage
+
+Run the application:
 
 ```bash
-# Linux
-curl -LO https://github.com/zas/dupsonic/releases/latest/download/dupsonic-linux-x86_64.tar.gz
-tar xzf dupsonic-linux-x86_64.tar.gz
-sudo mv dupsonic /usr/local/bin/
-
-# macOS (Apple Silicon)
-curl -LO https://github.com/zas/dupsonic/releases/latest/download/dupsonic-macos-aarch64.tar.gz
-tar xzf dupsonic-macos-aarch64.tar.gz
-sudo mv dupsonic /usr/local/bin/
+python AudioDupSelector.pyw
 ```
 
-**Windows:** download `dupsonic-windows-x86_64.zip` from the [releases page](https://github.com/zas/dupsonic/releases), extract `dupsonic.exe`, and place it in your PATH.
+A folder selection window will appear. Choose the folder containing your audio files.
 
-## Why dupsonic?
-
-Existing tools fail at cross-format duplicate detection:
-
-- **[Czkawka](https://github.com/qarmin/czkawka), [dupeGuru](https://github.com/arsenetar/dupeguru)** — compare metadata or file hashes only. Same song in FLAC and MP3? Not detected.
-- **[Duplicate Cleaner](https://www.duplicatecleaner.com/)** — claims audio comparison but [struggles with cross-format matching](https://community.metabrainz.org/t/extremely-large-music-collection-needs-advice-on-what-dedupe-program-to-use/608781).
-- **Manual comparison** — impossible with 10k+ files.
-
-dupsonic fingerprints the actual audio using [Chromaprint](https://acoustid.org/chromaprint) (the same technology behind [MusicBrainz Picard](https://picard.musicbrainz.org/)) and compares fingerprints to find duplicates.
-
-## Supported formats
-
-MP3, FLAC, OGG/Vorbis, Opus, WAV, M4A/AAC, WMA, AIFF, APE, WavPack, Musepack, WebM/MP4 audio.
-
-## Performance
-
-Benchmark with 2025 files (mixed FLAC/MP3 collection):
-
-| | dupsonic (15s) | dupsonic (120s) | soundalike (15s) |
-|---|---|---|---|
-| **Scan** | **~6s** | 36s | 2m 38s |
-| **Find dupes** | 0.04s | 0.04s | (included in scan) |
-| **Total** | **~6s** | **36s** | **2m 38s** |
-| **Duplicates found** | 33 groups | 33 groups | 32 groups |
-
-Designed for 100k+ file collections: parallel scanning, incremental cache, LSH-based O(n) matching, batched database writes.
-
-## Web UI
-
-For headless servers (NAS, Raspberry Pi), dupsonic includes a built-in web interface:
+### Options
 
 ```bash
-dupsonic serve                                          # http://127.0.0.1:8080 (localhost)
-dupsonic serve --bind 0.0.0.0:8080                      # expose on network
-dupsonic serve --bind 0.0.0.0:8080 --allow-ip 192.168.1.0/24   # restrict to LAN
+python AudioDupSelector.pyw --dossier "C:\path\to\audio"
+python AudioDupSelector.pyw --exe "C:\path\to\dupsonic.exe"
+python AudioDupSelector.pyw --port 8765
+python AudioDupSelector.pyw --no-browser
 ```
 
-Open from any browser on your network. Features: scan, find duplicates, view quality details, delete (moves to system trash with undo), exclude.
+## 🔄 How it works
 
-See [ADVANCED.md](ADVANCED.md#web-ui) for access control options (`--allow-ip`, `DUPSONIC_BIND`, `DUPSONIC_ALLOW_IP`).
+1. `dupsonic.exe` scans the selected audio folder.
+2. Audio duplicates are detected.
+3. Duplicate pairs are displayed in the web interface.
+4. Listen to both files.
+5. Click **Keep this one**.
+6. The other file is moved to `trier/`.
 
-## Similar projects
+> [!NOTE]
+> Groups containing 3 or more duplicate files are not currently handled by the selection interface.
 
-**[soundalike](https://codeberg.org/derat/soundalike)** by Daniel Erat — a mature Go tool using Chromaprint. Lightweight, has built-in move/delete commands. Requires external `fpcalc`, defaults to 15s fingerprints, no [MusicBrainz](https://musicbrainz.org/) integration.
+## 🛡️ Safety
 
-## Contributing
+AudioDupSelector does **not permanently delete files**.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for build instructions, architecture overview, and development workflow.
+When you keep one file, the other is moved to:
 
-## License
+```text
+trier/
+```
 
-GPL-2.0-or-later
+This makes it possible to recover a file if you make a mistake.
+
+## 📥 Download
+
+Get the latest version from the **[Releases](https://github.com/MATTRAX64/AudioDupSelector/releases)** page.
+
+## 📄 License
+
+See the main repository for license information.
+
+---
+
+<div align="center">
+
+Made with ❤️ for easier audio library cleanup.
+
+</div>
