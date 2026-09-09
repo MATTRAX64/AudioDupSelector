@@ -78,6 +78,6 @@ Find duplicates
 
 <div align="center">
 
-Made with the [dupsonic](https://github.com/zas/dupsonic) project.
+Made with the [dupsonic](https://github.com/zas/dupsonic) project v0.2.5 windows release.
 
 </div>
